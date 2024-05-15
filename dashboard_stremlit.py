@@ -3,7 +3,6 @@ import pandas as pd
 import plotly.express as px
 from utils import convert_multi_format_data, convert_category
 
-
 path = './data/dataset_desafio_fadesp.csv'
 df = pd.read_csv(path, encoding='latin1', sep=',')
 
@@ -25,9 +24,9 @@ segment = st.selectbox('Segment', df['Segment'].unique())
 region = st.selectbox('Region', df['Region'].unique())
 category = st.selectbox('Category', df['Category'].unique())
 
-df_filtered = df[(df['Segment'] == selected_segment) &
-                 (df['Region'] == selected_region) &
-                 (df['Category'] == selected_category)]
+df_filtered = df[(df['Segment'] == segment) &
+                 (df['Region'] == region) &
+                 (df['Category'] == category)]
 
 sales_date_figure = px.line(df_filtered, x='Order Date', y='Sales')
 sales_region_figure = px.bar(df_filtered, x='Region', y='Sales')
