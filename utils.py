@@ -1,9 +1,10 @@
 import sqlite3
 import os
 import pandas as pd
+import datetime
 
 
-def convert_multi_format_data(date_str):
+def convert_mult_format_data(date_str):
     """tenta converter primeiramente o formato de string '%m/%d/%Y' para datetime, caso tenha erro,
     a função lida com esse erro atribuindo a conversão do formato '%d-%m-%Y' para datetime. nesse caso serve para ambas
     as colunas.
