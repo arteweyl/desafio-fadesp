@@ -19,21 +19,16 @@ def convert_category(df: pd.DataFrame, colunas):
 
 df = convert_category(df, categories)
 
-# Converte 'Order Date' para datetime e extrai o mês e o ano
-df['Order Date'] = pd.to_datetime(df['Order Date'])
 
-# Cria os filtros
+df['Order Date'] = pd.to_datetime(df['Order Date'])
 segment = st.selectbox('Segment', df['Segment'].unique())
 region = st.selectbox('Region', df['Region'].unique())
 category = st.selectbox('Category', df['Category'].unique())
 
 df_filtered = df[(df['Segment'] == selected_segment) &
                  (df['Region'] == selected_region) &
-                 (df['Category'] == selected_category) &
-                 #(df['Order Priority'] == selected_priority) &
-                 (df['YearMonth'] == selected_yearmonth)]
+                 (df['Category'] == selected_category)]
 
-# Cria os gráficos
 sales_date_figure = px.line(df_filtered, x='Order Date', y='Sales')
 sales_region_figure = px.bar(df_filtered, x='Region', y='Sales')
 sales_profit_figure = px.scatter(df_filtered, x='Sales', y='Profit')
